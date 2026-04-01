@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個人履歷 - 劉祐君</title>
+
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      margin: 0;
+      background: #eef2f7;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: flex;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .left {
+      width: 32%;
+      background: linear-gradient(180deg, #4facfe, #00c6ff);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .left img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      margin-bottom: 15px;
+    }
+
+    .right {
+      width: 68%;
+      padding: 30px;
+    }
+
+    section {
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      border-left: 6px solid #4facfe;
+      padding-left: 10px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      background: #4facfe;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* 🎵 音樂按鈕 */
+    .music-btn {
+      margin-top: 15px;
+      background: white;
+      color: #4facfe;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🎵 音樂 -->
+<audio id="bgm" loop>
+  <source src="Untitled.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <!-- 左側 -->
+  <div class="left">
+    <img src="images/photo.jpg" alt="個人照片">
+    <h1>劉祐君</h1>
+    <p>亞洲大學學生</p>
+    <p>學號：114024052</p>
+
+    <!-- 🎵 音樂控制按鈕 -->
+    <button class="music-btn" onclick="toggleMusic()">▶ 播放音樂</button>
+  </div>
+
+  <!-- 右側 -->
+  <div class="right">
+
+    <section>
+      <h2>關於我</h2>
+      <p>
+        我對人工智慧與資訊傳播領域充滿熱情，具備跨領域整合能力。
+      </p>
+    </section>
+
+    <section>
+      <h2>學習與經歷</h2>
+      <ul>
+        <li>Podcast《欸！你犯法了》製作</li>
+        <li>YouTube 校園問卷調查</li>
+        <li>排球隊球經（三年）</li>
+        <li>英文戲劇比賽（燈光音效組長）</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>專題研究</h2>
+      <ul>
+        <li>《娼妓業在台北萬華的變遷》</li>
+      </ul>
+
+      <button onclick="toggleMore()">查看更多</button>
+      <p id="more" class="hidden">
+        進一步探討社會議題與科技應用的結合。
+      </p>
+    </section>
+
+  </div>
+
+</div>
+
+<script>
+  let isPlaying = false;
+  const audio = document.getElementById("bgm");
+
+  function toggleMusic() {
+    if (!isPlaying) {
+      audio.play();
+      isPlaying = true;
+      document.querySelector(".music-btn").innerText = "⏸ 暫停音樂";
+    } else {
+      audio.pause();
+      isPlaying = false;
+      document.querySelector(".music-btn").innerText = "▶ 播放音樂";
+    }
+  }
+
+  function toggleMore() {
+    document.getElementById('more').classList.toggle('hidden');
+  }
+</script>
+
+</body>
+</html>
