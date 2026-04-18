@@ -3,132 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>個人履歷 - 劉祐君</title>
+  <title>劉祐君｜個人履歷</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: "Microsoft JhengHei", sans-serif;
-      margin: 0;
-      background: #eef2f7;
-      color: #333;
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins','Microsoft JhengHei',sans-serif;}
+
+    body{
+      background:#f7f5f2;
+      color:#3e3a36;
+      overflow-x:hidden;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      display: flex;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    /* 淺色大地視差 */
+    .parallax{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:
+        radial-gradient(circle at 20% 20%, #e6dfd5, transparent),
+        radial-gradient(circle at 80% 60%, #d6cec3, transparent);
+      z-index:-1;
+      opacity:0.8;
     }
 
-    .left {
-      width: 32%;
-      background: linear-gradient(180deg, #4facfe, #00c6ff);
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    .container{
+      max-width:1100px;
+      margin:100px auto;
+      background:rgba(255,255,255,0.7);
+      backdrop-filter:blur(12px);
+      border-radius:20px;
+      display:grid;
+      grid-template-columns:320px 1fr;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
     }
 
-    .left img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid white;
-      margin-bottom: 15px;
+    .left{
+      background:linear-gradient(180deg,#d6cec3,#bfb6a8);
+      padding:40px 25px;text-align:center;
     }
 
-    .right {
-      width: 68%;
-      padding: 30px;
+    .left img{
+      width:160px;height:160px;border-radius:50%;object-fit:cover;
+      border:3px solid rgba(255,255,255,0.7);
+      margin-bottom:18px;transition:0.3s;
     }
 
-    section {
-      margin-bottom: 25px;
+    .left img:hover{transform:scale(1.05);}
+
+    .left h1{font-size:24px;margin-bottom:6px;color:#2f2b27;}
+    .left p{font-size:13px;opacity:0.8;color:#4b463f;}
+
+    .music-btn{
+      margin-top:18px;padding:8px 12px;border-radius:8px;border:none;
+      background:#ffffff;color:#3e3a36;cursor:pointer;font-size:13px;
     }
 
-    h2 {
-      margin-bottom: 10px;
-      border-left: 6px solid #4facfe;
-      padding-left: 10px;
+    .right{padding:50px;}
+
+    section{
+      margin-bottom:40px;
+      transform:translateY(40px);
+      opacity:0;
+      transition:all 0.8s ease;
     }
 
-    button {
-      padding: 8px 12px;
-      border: none;
-      background: #4facfe;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
+    section.show{transform:translateY(0);opacity:1;}
+
+    h2{
+      font-size:18px;margin-bottom:12px;color:#8b7e6b;
+      letter-spacing:1px;
     }
 
-    .hidden {
-      display: none;
+    .card{
+      background:rgba(255,255,255,0.85);
+      padding:18px;border-radius:10px;
+      transition:0.3s;
+      line-height:1.6;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
     }
 
-    /* 🎵 音樂按鈕 */
-    .music-btn {
-      margin-top: 15px;
-      background: white;
-      color: #4facfe;
-      font-weight: bold;
+    .card:hover{
+      transform:translateY(-3px);
     }
+
+    .tag{
+      display:inline-block;
+      background:#e6dfd5;
+      color:#3e3a36;
+      padding:4px 10px;border-radius:16px;
+      font-size:11px;margin:4px 4px 0 0;
+    }
+
+    ul{list-style:none;}
+    li{padding:6px 0;opacity:0.9;}
+
+    .timeline li{
+      position:relative;padding-left:18px;
+    }
+
+    .timeline li::before{
+      content:"";
+      position:absolute;left:0;top:10px;
+      width:6px;height:6px;border-radius:50%;
+      background:#bfb6a8;
+    }
+
+    .hidden{display:none;}
+
   </style>
 </head>
 
 <body>
 
-<!-- 🎵 音樂 -->
+<div class="parallax" id="parallax"></div>
+
 <audio id="bgm" loop>
   <source src="audio/Untitled.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
 
-  <!-- 左側 -->
   <div class="left">
     <img src="images/S__179339385.jpg" alt="個人照片">
     <h1>劉祐君</h1>
     <p>亞洲大學學生</p>
     <p>學號：114024052</p>
 
-    <!-- 🎵 音樂控制按鈕 -->
     <button class="music-btn" onclick="toggleMusic()">▶ 播放音樂</button>
   </div>
 
-  <!-- 右側 -->
   <div class="right">
 
     <section>
       <h2>關於我</h2>
-      <p>
-        我對人工智慧與資訊傳播領域充滿熱情，具備跨領域整合能力。
-      </p>
+      <div class="card">
+        我對人工智慧與資訊傳播領域充滿熱情，具備跨領域整合能力，並持續透過實作與專題深化理解。
+      </div>
     </section>
 
     <section>
       <h2>學習與經歷</h2>
-      <ul>
-        <li>Podcast《欸！你犯法了》製作</li>
-        <li>YouTube 校園問卷調查</li>
-        <li>排球隊球經（三年）</li>
-        <li>英文戲劇比賽（燈光音效組長）</li>
-      </ul>
+      <div class="card">
+        <ul class="timeline">
+          <li>Podcast《欸！你犯法了》製作（企劃、錄音、剪輯）</li>
+          <li>YouTube 校園問卷調查與數據分析</li>
+          <li>排球隊球經（三年）負責數據與隊務管理</li>
+          <li>英文戲劇比賽（燈光音效組長）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>核心能力</h2>
+      <div class="card">
+        <span class="tag">資料分析</span>
+        <span class="tag">內容製作</span>
+        <span class="tag">Podcast製作</span>
+        <span class="tag">影像設計</span>
+        <span class="tag">團隊協作</span>
+      </div>
     </section>
 
     <section>
       <h2>專題研究</h2>
-      <ul>
-        <li>《娼妓業在台北萬華的變遷》</li>
-      </ul>
+      <div class="card">
+        <ul>
+          <li>《娼妓業在台北萬華的變遷》</li>
+        </ul>
 
-      <button onclick="toggleMore()">查看更多</button>
-      <p id="more" class="hidden">
-        進一步探討社會議題與科技應用的結合。
-      </p>
+        <button onclick="toggleMore()">查看更多</button>
+        <p id="more" class="hidden">
+          從歷史、社會與法律角度分析產業變遷，並探討資訊傳播如何影響大眾認知。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>學習特質</h2>
+      <div class="card">
+        具備邏輯分析能力、跨領域整合思維，以及在團隊中溝通與協調的經驗，能將抽象概念轉化為具體成果。
+      </div>
+    </section>
+
+    <section>
+      <h2>未來目標</h2>
+      <div class="card">
+        未來希望深入AI與資料應用領域，結合傳播能力，發展具有社會影響力的數位內容與技術應用。
+      </div>
     </section>
 
   </div>
@@ -136,22 +198,25 @@
 </div>
 
 <script>
-  let isPlaying = false;
-  const audio = document.getElementById("bgm");
+  let isPlaying=false;
+  const audio=document.getElementById("bgm");
 
-  function toggleMusic() {
-    if (!isPlaying) {
-      audio.play();
-      isPlaying = true;
-      document.querySelector(".music-btn").innerText = "⏸ 暫停音樂";
-    } else {
-      audio.pause();
-      isPlaying = false;
-      document.querySelector(".music-btn").innerText = "▶ 播放音樂";
-    }
+  function toggleMusic(){
+    if(!isPlaying){audio.play();isPlaying=true;document.querySelector(".music-btn").innerText="⏸ 暫停";}
+    else{audio.pause();isPlaying=false;document.querySelector(".music-btn").innerText="▶ 播放";}
   }
 
-  function toggleMore() {
+  window.addEventListener("scroll",()=>{
+    const scrollY=window.scrollY;
+    document.getElementById("parallax").style.transform=`translateY(${scrollY*0.2}px)`;
+
+    document.querySelectorAll("section").forEach(sec=>{
+      const top=sec.getBoundingClientRect().top;
+      if(top<window.innerHeight-100){sec.classList.add("show");}
+    });
+  });
+
+  function toggleMore(){
     document.getElementById('more').classList.toggle('hidden');
   }
 </script>
